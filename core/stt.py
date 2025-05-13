@@ -14,7 +14,7 @@ frameSize = int(sampleRate * frameDuration / 1000)
 
 model = WhisperModel("base", compute_type="int8")
 
-def recordAudioVad(maxSilence=1.0, maxDuration=10, ambientWindow=20):
+def recordAudioVad(maxSilence=0.5, maxDuration=10, ambientWindow=20):
     vad = webrtcvad.Vad(3)
     audioBuffer = []
     silenceStart = None

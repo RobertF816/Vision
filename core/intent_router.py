@@ -14,11 +14,18 @@ class IntentRouter:
                 ["light", "lights"],
                 ["on", "off"]
             ],
+            "cancelTimers": [
+                ["cancel", "stop"],
+                ["timer", "timers"]
+            ]
         }
 
         self.slotHints = {
             "setTimer": {
-                "duration": ["1 minute", "5 minutes", "10 minutes", "30 seconds"]
+                "duration": [
+                    "1 second", "5 seconds", "10 seconds", "30 seconds",
+                    "1 minute", "5 minutes", "10 minutes"
+                ]
             },
             "controlLight": {
                 "location": ["kitchen", "bedroom", "living room", "office"],
@@ -49,12 +56,22 @@ class IntentRouter:
         for group in wordGroups:
             if any(word in text for word in group):
                 matchedGroups += 1
-        # Score = raw matches + normalized ratio bonus
         score = matchedGroups + (matchedGroups / len(wordGroups))
         return score
 
     def _extractSlots(self, intent, text):
+        print(f"[DEBUG] Extracting slots for '{intent}' from: {text}")
         args = {}
+
+        if intent == "setTimer":
+            match = re.search(r"(\d{1,3})\s*(seconds?|minutes?)", text)
+            if match:
+                number = match.group(1)
+                unit = match.group(2)
+                args["duration"] = f"{number} {unit}"
+            return args
+
+    # default hint-based matching for other intents
         if intent not in self.slotHints:
             return args
 
@@ -66,3 +83,4 @@ class IntentRouter:
                     break
 
         return args
+
