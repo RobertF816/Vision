@@ -9,6 +9,7 @@ As of Right Now Vision:
  - Uses Smart VAD recording
  - Fast Transcription - faster-whisper
  - threaded architecture
+ - Smart Intent Parsing
 
 ## how to run
 
