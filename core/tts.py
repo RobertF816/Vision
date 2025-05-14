@@ -24,11 +24,6 @@ def speak(text):
     audioBytes = b"".join(audio)
     audioSegment = AudioSegment.from_file(io.BytesIO(audioBytes), format="mp3")
     
-   # silence = AudioSegment.silent(duration=250)
-   # paddedAudio = silence + audioSegment + silence
-   # paddedAudio = paddedAudio.fade_in(50).fade_out(100)
-   # paddedAudio = paddedAudio.fade_out(500)
-
     with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as f:
         audioSegment.export(f.name, format="wav")
         os.system(f"aplay {f.name}")
