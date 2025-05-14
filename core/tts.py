@@ -26,4 +26,12 @@ def speak(text):
     
     with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as f:
         audioSegment.export(f.name, format="wav")
-        os.system(f"aplay {f.name}")
+        system = platform.system()
+        if system == "Darwin":
+            os.system(f"afplay {f.name}")
+        elif system == "Linux": 
+            os.system(f"aplay {f.name}")
+        elif system == "Windows":
+            os.system(f'start /min "" "{f.name}"')
+        else:
+            print("Unsupported OS. Cannot play audio");
