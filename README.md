@@ -10,8 +10,10 @@ As of Right Now Vision:
  - Fast Transcription - faster-whisper
  - threaded architecture
  - Smart Intent Parsing
-
-## how to run
+ - Smart Command Handling
+ - A few very simple commands (shown in commands.txt)
+ - TTS with Elevenlabs (for now)
+## How To Run
 
  1. Clone the repo
  2. create a 'config.py' file from 'config_template.py' and insert respective keys/paths
