@@ -1,0 +1,13 @@
+Current Commands:
+getTime: Responds with current time
+
+setTimer: sets a timer for X Y in a new thread
+X = number
+Y = seconds/minutes
+cancelTimer: Cancels all timers
+
+controlLight: turns X the lights in Y
+X = on/off
+Y = Location
+
+getDate: responds with current date in: weekday, month + day, year

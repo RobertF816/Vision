@@ -27,5 +27,6 @@ def onWakeWordDetected():
     startSTT(onTranscriptionReady)
 
 if __name__ == "__main__":
+    speak("Systems Online. Awaiting your command, Robert")
     print("Listening for Hey Jinx")
     start_listening(onWakeWordDetected)

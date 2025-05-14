@@ -18,6 +18,8 @@ class CommandRegistry:
             return self.controlLight(args.get("state"), args.get("location"))
         elif intent == "cancelTimers":
             return self.cancelTimers()
+        elif intent == "getDate":
+            return self.getDate()
         else:
             return "I'm not sure how to handle that yet."
 
@@ -71,3 +73,7 @@ class CommandRegistry:
         if not state or not location:
             return "Please specify both the state and location."
         return f"Turning {state} the lights in the {location}."
+
+    def getDate(self):
+        now = datetime.now()
+        return now.strftime("It is %A, %B %d, %Y.")

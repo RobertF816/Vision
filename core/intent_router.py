@@ -17,6 +17,9 @@ class IntentRouter:
             "cancelTimers": [
                 ["cancel", "stop"],
                 ["timer", "timers"]
+            ],
+            "getDate": [
+                ["date", "today"]
             ]
         }
 

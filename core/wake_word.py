@@ -26,7 +26,6 @@ def start_listening(on_wake_detected):
         callback = audio_callback
     )
 
-    print("Listening for 'Hey Jinx'")
     with stream:
         try:
             while True:
