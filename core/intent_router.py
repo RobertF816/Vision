@@ -42,7 +42,13 @@ class IntentRouter:
         bestScore = 0
 
         for intent, groups in self.intentPatterns.items():
-            score = self._matchGroups(text, groups)
+            if intent == "cancelTimers":
+                if all(any(word in text for word in group) for group in groups):
+                    score = len(groups) + (len(groups) / len(groups))
+                else:
+                    score = 0
+            else:
+                score = self._matchGroups(text, groups)
             print(f"Intent '{intent}' matched with score {score:.2f}")
             if score > bestScore:
                 bestIntent = intent
@@ -59,9 +65,8 @@ class IntentRouter:
         for group in wordGroups:
             if any(word in text for word in group):
                 matchedGroups += 1
-        score = matchedGroups + (matchedGroups / len(wordGroups))
-        return score
-
+        return matchedGroups + (matchedGroups / len(wordGroups))
+   
     def _extractSlots(self, intent, text):
         print(f"[DEBUG] Extracting slots for '{intent}' from: {text}")
         args = {}
