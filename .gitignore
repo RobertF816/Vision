@@ -175,3 +175,7 @@ cython_debug/
 .pypirc
 config.py
 *.wav
+
+# Porcupine keyword files
+
+*.ppn
